@@ -35,7 +35,16 @@ frappe.query_reports["Salary Slip Register"] = {
                         "label": __("Designation"),
                         "fieldtype": "Link",
                         "options": "Designation"
+                },
+		 {
+                        "fieldname":"slip_status",
+                        "label": __("Status"),
+                        "fieldtype": "Select",
+			"reqd": 1,
+			"default":"Submitted",  
+	                "options": " \nDraft\nSubmitted"
                 }
+
 
 
         ]
