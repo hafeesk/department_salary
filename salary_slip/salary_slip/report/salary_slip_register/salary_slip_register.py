@@ -67,13 +67,13 @@ def execute(filters=None):
                                 section_data.append(value)
                                 for ind,amount in enumerate(value):
                                         if type(amount) is float:
-                                                sum_dep[ind]= sum_dep[ind] + amount
-						total_sum_dep[ind]= round((total_sum_dep[ind] + amount),2)
+                                                sum_dep[ind]= round(sum_dep[ind] + amount,2)
+						total_sum_dep[ind]= round(total_sum_dep[ind] + amount,2)
                         sum_dep[0] = ''
 			sum_dep[1] = ''
-			sum_dep[3] = key + ' Total'
-                        sum_dep[2] = ''
-			sum_dep[4] = ''
+			sum_dep[2] = key + ' Total'
+                        sum_dep[3] = ''
+			sum_dep[-1]= ''
 
                         section_data.append(sum_dep)
                         blank = ['' for x in range(len(values[0]))]
@@ -81,9 +81,9 @@ def execute(filters=None):
 
 	total_sum_dep[0] = ''
 	total_sum_dep[1] = ''
-	total_sum_dep[3] = 'Total'
-        total_sum_dep[2] = ''
-	total_sum_dep[4] = ''
+	total_sum_dep[2] = 'Total'
+        total_sum_dep[3] = ''
+	total_sum_dep[-1] = ''
 	section_data.append(total_sum_dep)
         return columns,section_data
 
@@ -97,7 +97,7 @@ def get_columns(salary_slips):
         ]
         """
         columns = [
-                _("Employee") + ":Link/Employee:120", _("Employee Name") + "::140", _("Position") + "::160",_("Grade") + "::80", _("Days Worked") + ":Float:100",_("VL Days") + ":Float:60"]
+                _("Employee") + ":Link/Employee:120", _("Employee Name") + "::140", _("Position") + "::160",_("Grade") + "::80", _("Days Worked") + ":Currency:100",_("VL Days") + ":Currency:60"]
 
         salary_components = {_("Earning"): [], _("Deduction"): []}
 
@@ -109,7 +109,7 @@ def get_columns(salary_slips):
 
         columns = columns + [(e + ":Currency:120") for e in salary_components[_("Earning")]] + \
                 [_("Gross Pay") + ":Currency:120"] + [(d + ":Currency:120") for d in salary_components[_("Deduction")]] + \
-                [_("Total Deduction") + ":Currency:120", _("Net Pay") + ":Currency:120",_("Method") + "::120"]
+                [_("Total Deduction") + ":Currency:120", _("Net Pay") + ":Currency:120",_("Method") + ":Data:120"]
 
         return columns, salary_components[_("Earning")], salary_components[_("Deduction")]
 

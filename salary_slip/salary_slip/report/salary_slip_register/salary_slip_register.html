@@ -24,8 +24,10 @@
 			<tr>
 				{% for(var j=0, m=report.columns.length; j<m; j++) { %}
 					{% var fieldname = report.columns[j].field; %}
+					{% var fielddatatype = report.columns[j].fieldtype; %}
 					{% if (data[i]['Method'] == "" ) { %}
 						<td><b>{%=data[i][fieldname] %}</b></td>
+						
 					{% } else { %}
 						<td>{%=data[i][fieldname] %}</td>
 					{% } %}
